@@ -16,12 +16,13 @@ REG_TOKEN=$(curl -sX POST -H "Authorization: token ${ACCESS_TOKEN}" \
 
 # Configure the runner with your organization
 cd /home/runner/actions-runner
-if [[ $EPHMERAL = 'false' ]]; then
-  ./config.sh --url https://github.com/${ORGANIZATION} --token ${REG_TOKEN} \
+if [[ $EPHMERAL = 'true' ]]; then
+  ./config.sh --url https://github.com/${ORGANIZATION} --token ${REG_TOKEN} --ephemeral \
   --name ${RUNNER_NAME} --labels x64,linux,worker,${RUNNER_LABELS} --runnergroup Default --work _work
 else
-  ./config.sh --url https://github.com/${ORGANIZATION} --token ${REG_TOKEN} --ephemeral \
+  ./config.sh --url https://github.com/${ORGANIZATION} --token ${REG_TOKEN} \
   --name ${RUNNER_NAME} --labels x64,linux,worker,${RUNNER_LABELS} --runnergroup Default --work _work
 fi
 
+# Initialize the runner
 ./run.sh 
