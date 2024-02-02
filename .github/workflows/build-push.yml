@@ -5,7 +5,8 @@ on:
   workflow_dispatch:
   
 env:
-  IMAGE_NAME: 'ghcr.io/sohraub/actions-runner'
+  #IMAGE_NAME: 'ghcr.io/sohraub/actions-runner'
+  IMAGE_NAME: 'sohraubpazukiarctiq/github-actions-runner'
   VERSION: '1.0.0'
 
 jobs:
@@ -22,9 +23,12 @@ jobs:
       - name: Login to Container Registry
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: sohraubpazukiarctiq
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        #with:
+        #  registry: ghcr.io
+        #  username: ${{ github.actor }}
+        #  password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5

@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
-# set the github runner version, default to 2.311.0
-ARG RUNNER_VERSION=2.311.0
+# set the github runner version, default to 2.312.0
+ARG RUNNER_VERSION=2.312.0
 
 # Make the start script executable
 RUN apt-get update -y && apt-get upgrade -y; \
