@@ -1,13 +1,12 @@
 FROM ubuntu:20.04
 
-# set the github runner version, default to 2.312.0
+# Set the github runner version, default to 3.312.0
 ARG RUNNER_VERSION=2.312.0
 
-# Make the start script executable
+# Install pre-reqs with apt
 RUN apt-get update -y && apt-get upgrade -y; \
     DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y --no-install-recommends \ 
-    tzdata curl jq build-essential libssl-dev libffi-dev python3 python3-venv \ 
-    python3-dev python3-pip ca-certificates git-core;
+    tzdata curl jq ca-certificates;
 
 # Add a runner user and download the requisite files from GitHub,
 # unzipping the files into a folder where the runner user has permissions
